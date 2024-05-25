@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavBar On Scroll</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">Logo</a>
+        <button><i class="fa fa-bars"></i></button>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </header>
+    <section class="banner"></section>
+
+    <script type="text/javascript">
+        var button = document.querySelector("button");
+        var buttonIcon = document.querySelector("button i");
+        var link = document.querySelectorAll("a");
+        var links = document.querySelector("header ul");
+        window.addEventListener("scroll", function() {
+            var header = document.querySelector("header");
+            header.classList.toggle("sticky", window.scrollY > 100)
+            button.classList.toggle("sticky", window.scrollY > 100)
+            links.classList.toggle("links-width", window.scrollY > 100)
+        })
+        button.addEventListener("click", () => {
+            links.classList.toggle('links');
+            if (links.classList[0] == "links") {
+                buttonIcon.classList.remove('fa-bars')
+                buttonIcon.classList.add('fa-times')
+            }
+            else {
+                buttonIcon.classList.remove('fa-times')
+                buttonIcon.classList.add('fa-bars')
+            }
+        })
+
+        link.forEach((a) => {
+            a.addEventListener("click", () => {
+                links.classList.remove('links');
+                buttonIcon.classList.remove('fa-times')
+                buttonIcon.classList.add('fa-bars')
+            })
+        })
+    </script>
+</body>
+</html>
